@@ -1,16 +1,15 @@
 import { ConnectOptions, connect, connection } from 'mongoose'
+import 'dotenv/config'
 
 type ConnectionOptionsExtend = {
   useNewUrlParser: boolean
   useUnifiedTopology: boolean
-  useCreateIndex: boolean
 }
 
-const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fbwc9.gcp.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`
+const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_CLUSTER}.plvsk.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`
 const options: ConnectOptions & ConnectionOptionsExtend = {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
+  useUnifiedTopology: true
 }
 
 const connectDB = async () => {

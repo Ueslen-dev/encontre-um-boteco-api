@@ -20,7 +20,9 @@
     "baseUrl": ".",
     "strict": true,
     "paths": {
-        "@controllers/*": ["./src/controllers/*"]
+        "@controllers/*": ["./src/controllers/*"],
+        "@models/*": ["./src/models/*"],
+        "@interfaces/*": ["./src/interfaces/*"]
     }                      
   },
   "include": [
