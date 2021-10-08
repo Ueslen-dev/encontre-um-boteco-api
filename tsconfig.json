@@ -22,7 +22,8 @@
     "paths": {
         "@controllers/*": ["./src/controllers/*"],
         "@models/*": ["./src/models/*"],
-        "@interfaces/*": ["./src/interfaces/*"]
+        "@interfaces/*": ["./src/interfaces/*"],
+        "@utils/*": ["./src/utils/*"]
     }                      
   },
   "include": [

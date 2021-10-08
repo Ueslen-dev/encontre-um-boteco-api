@@ -3,8 +3,9 @@ interface Pub {
   email: String
   whatsapp?: String
   instagram?: String
-  state: String
-  city: String
+  state: Number
+  city: Number
+  cep: Number
   address: String
   reference: String
   photo?: String

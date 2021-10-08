@@ -33,6 +33,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "express": "^4.17.1",
-    "mongoose": "^6.0.9"
+    "mongoose": "^6.0.9",
+    "uid": "^2.0.0"
   }
 }
