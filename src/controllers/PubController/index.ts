@@ -4,10 +4,11 @@ import { uid } from 'uid'
 import Pub from '@models/Pub'
 import PubInterface from '@interfaces/Pub'
 
+let filename
 class PubController {
   index (req: Request, res: Response, next: NextFunction) {
     try {
-      const { state, city } = req.query as unknown as {state: Number, city: Number}
+      const { state, city } = req.query as unknown as { state: Number, city: Number }
 
       state && city
         ? Pub.find({ state, city }, (err, data: PubInterface[]) => {
@@ -34,7 +35,6 @@ class PubController {
         cep,
         address,
         reference,
-        photo,
         responsible
       }: PubInterface = req.body
 
@@ -49,16 +49,17 @@ class PubController {
         cep,
         address,
         reference,
-        photo,
+        photo: filename,
         responsible,
         code
       }))
 
       if (await Pub.findOne({ name })) { return res.status(400).json({ error: 'Infelizmente esse boteco já existe' }) }
       if (await Pub.findOne({ code })) return res.status(400).json({ error: 'Já existe um boteco com esse código' })
-      if (await Pub.findOne({ photo })) return res.status(400).json({ error: 'Já existe um boteco com o mesmo nome de imagem' })
+      if (await Pub.findOne({ photo: filename })) return res.status(400).json({ error: 'Já existe um boteco com o mesmo nome de imagem' })
 
       insertPub.save()
+      filename = undefined
 
       return res.send({ insertPub })
     } catch (error) {
@@ -79,6 +80,19 @@ class PubController {
           return res.status(200).json(data)
         })
         : res.status(400).json({ error: 'Não temos resultados' })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async upload (req: Request, res: Response, next: NextFunction) {
+    try {
+      if (req.file.filename) {
+        filename = req.file.filename
+        return res.status(201).json({ success: 'successful upload!' })
+      } else {
+        return res.status(400).json({ error: 'image not exist' })
+      }
     } catch (error) {
       next(error)
     }
