@@ -1,8 +1,8 @@
+import 'dotenv/config'
 import express, { Request, Response, NextFunction } from 'express'
 import cors from 'cors'
 import route from './routes'
-import connectDB from './config/database'
-import 'dotenv/config'
+import connectDB from '@config/database'
 
 const app = express()
 const port = process.env.PORT || 5050

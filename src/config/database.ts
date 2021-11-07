@@ -1,5 +1,4 @@
 import { ConnectOptions, connect, connection } from 'mongoose'
-import 'dotenv/config'
 
 type ConnectionOptionsExtend = {
   useNewUrlParser: boolean

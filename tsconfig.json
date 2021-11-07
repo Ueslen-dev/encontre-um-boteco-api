@@ -23,7 +23,8 @@
         "@controllers/*": ["./src/controllers/*"],
         "@models/*": ["./src/models/*"],
         "@interfaces/*": ["./src/interfaces/*"],
-        "@utils/*": ["./src/utils/*"]
+        "@utils/*": ["./src/utils/*"],
+        "@config/*": ["./src/config/*"]
     }                      
   },
   "include": [
