@@ -4,6 +4,17 @@ import { uid } from 'uid'
 import Pub from '@models/Pub'
 import PubInterface from '@interfaces/Pub'
 
+import MESSAGES from '@utils/messages'
+const {
+  NOT_RESULT,
+  PUB_EXIST,
+  PUB_CODE_EXIST,
+  PUB_IMAGE_EXIST,
+  UPLOAD_SUCCESS,
+  UPLOAD_ERROR
+} = MESSAGES
+
+const maxLengthUid = 16
 let filename
 class PubController {
   index (req: Request, res: Response, next: NextFunction) {
@@ -17,7 +28,7 @@ class PubController {
           }
           return res.status(200).json(data)
         })
-        : res.status(400).json({ error: 'Não temos resultados' })
+        : res.status(400).json({ error: NOT_RESULT })
     } catch (error) {
       next(error)
     }
@@ -38,7 +49,7 @@ class PubController {
         responsible
       }: PubInterface = req.body
 
-      const code = uid(16)
+      const code = uid(maxLengthUid)
       const insertPub = new Pub(({
         name,
         email,
@@ -54,9 +65,9 @@ class PubController {
         code
       }))
 
-      if (await Pub.findOne({ name })) { return res.status(400).json({ error: 'Infelizmente esse boteco já existe' }) }
-      if (await Pub.findOne({ code })) return res.status(400).json({ error: 'Já existe um boteco com esse código' })
-      if (await Pub.findOne({ photo: filename })) return res.status(400).json({ error: 'Já existe um boteco com o mesmo nome de imagem' })
+      if (await Pub.findOne({ name })) { return res.status(400).json({ error: PUB_EXIST }) }
+      if (await Pub.findOne({ code })) return res.status(400).json({ error: PUB_CODE_EXIST })
+      if (await Pub.findOne({ photo: filename })) return res.status(400).json({ error: PUB_IMAGE_EXIST })
 
       insertPub.save()
       filename = undefined
@@ -79,7 +90,7 @@ class PubController {
           }
           return res.status(200).json(data)
         })
-        : res.status(400).json({ error: 'Não temos resultados' })
+        : res.status(400).json({ error: NOT_RESULT })
     } catch (error) {
       next(error)
     }
@@ -89,9 +100,9 @@ class PubController {
     try {
       if (req.file.filename) {
         filename = req.file.filename
-        return res.status(201).json({ success: 'successful upload!' })
+        return res.status(201).json({ success: UPLOAD_SUCCESS })
       } else {
-        return res.status(400).json({ error: 'image not exist' })
+        return res.status(400).json({ error: UPLOAD_ERROR })
       }
     } catch (error) {
       next(error)
