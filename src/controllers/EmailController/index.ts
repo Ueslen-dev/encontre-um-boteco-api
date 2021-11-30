@@ -10,7 +10,7 @@ const {
   EMAIL_ERROR_SUBJECT
 } = MESSAGES
 class EmailController {
-  async send (req: Request, res: Response, next:NextFunction) {
+  async send (req: Request, res: Response, next: NextFunction) {
     const { to, subject } = req.query
 
     try {
