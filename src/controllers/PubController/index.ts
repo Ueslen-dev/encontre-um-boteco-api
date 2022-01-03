@@ -11,7 +11,9 @@ const {
   PUB_CODE_EXIST,
   PUB_IMAGE_EXIST,
   UPLOAD_SUCCESS,
-  UPLOAD_ERROR
+  UPLOAD_ERROR,
+  NOT_USER_VALIDATE,
+  NOT_PUB_OWNER
 } = MESSAGES
 
 const maxLengthUid = 16
@@ -104,6 +106,22 @@ class PubController {
       } else {
         return res.status(400).json({ error: UPLOAD_ERROR })
       }
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async validateUser (req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id, email } = req.query as unknown as { id: String, email: String}
+
+      if (!id || !email) { return res.status(400).json({ error: NOT_USER_VALIDATE }) }
+
+      const findPub = await Pub.findOne({ _id: id, email })
+
+      if (!findPub) { return res.status(400).json({ error: NOT_PUB_OWNER }) }
+
+      return res.status(200).json(findPub)
     } catch (error) {
       next(error)
     }

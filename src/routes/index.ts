@@ -16,5 +16,6 @@ route.post('/pub', Pub.save)
 route.post('/pub/upload', multer(uploadConfig).single('file'), Pub.upload)
 
 route.get('/pub/email/send', Email.send)
+route.get('/pub/user/validate', Pub.validateUser)
 
 export default route

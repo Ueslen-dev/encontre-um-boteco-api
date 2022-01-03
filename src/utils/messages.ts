@@ -6,7 +6,9 @@ export const MESSAGES = {
   UPLOAD_SUCCESS: 'Upload realizado com sucesso!',
   UPLOAD_ERROR: 'Ops! Ocorreu um erro ao tentar fazer upload',
   EMAIL_ERROR_TO: 'Por favor, insira um destinatário',
-  EMAIL_ERROR_SUBJECT: 'Por favor, insira um assunto'
+  EMAIL_ERROR_SUBJECT: 'Por favor, insira um assunto',
+  NOT_USER_VALIDATE: 'Por favor, informe um usuário e um boteco para validar',
+  NOT_PUB_OWNER: 'O boteco não existe ou você não é o proprietário'
 }
 
 export default MESSAGES

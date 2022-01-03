@@ -5,13 +5,21 @@ import hbs from 'nodemailer-express-handlebars'
 import emailTransporter from '@config/emailTransporter'
 
 import MESSAGES from '@utils/messages'
+import EmailBodyInterface from '@interfaces/EmailBody'
+
 const {
   EMAIL_ERROR_TO,
   EMAIL_ERROR_SUBJECT
 } = MESSAGES
 class EmailController {
   async send (req: Request, res: Response, next: NextFunction) {
-    const { to, subject } = req.query
+    const {
+      to,
+      subject,
+      code,
+      owner,
+      pub
+    }: EmailBodyInterface = req.body
 
     try {
       !to && res.status(400).json({ error: EMAIL_ERROR_TO })
@@ -35,7 +43,9 @@ class EmailController {
         subject,
         template: 'index',
         context: {
-          code: '545745'
+          code,
+          owner,
+          pub
         }
       }
 
