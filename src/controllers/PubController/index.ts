@@ -148,15 +148,9 @@ class PubController {
 
       if (!id) return res.status(400).json({ error: NOT_DELETE })
 
-      const delete12 = await Pub.deleteOne({ _id: id }, function (error) {
-        if (error) {
-          res.status(503).send({ message: 'something went wrong!' })
-        } else {
-          res.status(200).send({ message: 'role deleted successfuly!' })
-        }
-      })
+      const pubDelete = await Pub.findOneAndDelete({ _id: id })
 
-      return res.status(200).json(delete12)
+      return res.status(200).json(pubDelete)
     } catch (error) {
       next(error)
     }
