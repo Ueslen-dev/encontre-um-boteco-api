@@ -8,7 +8,9 @@ export const MESSAGES = {
   EMAIL_ERROR_TO: 'Por favor, insira um destinatário',
   EMAIL_ERROR_SUBJECT: 'Por favor, insira um assunto',
   NOT_USER_VALIDATE: 'Por favor, informe um usuário e um boteco para validar',
-  NOT_PUB_OWNER: 'O boteco não existe ou você não é o proprietário'
+  NOT_PUB_OWNER: 'O boteco não existe ou você não é o proprietário',
+  NOT_ID_OR_CODE: 'As propriedades "id" e "code" são inválidas ou não existem',
+  NOT_DELETE: 'Infelizmente não foi possível remover este boteco'
 }
 
 export default MESSAGES

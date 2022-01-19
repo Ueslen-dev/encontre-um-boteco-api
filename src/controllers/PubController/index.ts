@@ -9,7 +9,8 @@ import MESSAGES from '@utils/messages'
 const {
   NOT_RESULT,
   UPLOAD_SUCCESS,
-  UPLOAD_ERROR
+  UPLOAD_ERROR,
+  NOT_DELETE
 } = MESSAGES
 
 const maxLengthUid = 16
@@ -136,6 +137,26 @@ class PubController {
       filename = undefined
 
       return res.status(200).json(pubUpdate)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async delete (req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.query as unknown as { id: String}
+
+      if (!id) return res.status(400).json({ error: NOT_DELETE })
+
+      const delete12 = await Pub.deleteOne({ _id: id }, function (error) {
+        if (error) {
+          res.status(503).send({ message: 'something went wrong!' })
+        } else {
+          res.status(200).send({ message: 'role deleted successfuly!' })
+        }
+      })
+
+      return res.status(200).json(delete12)
     } catch (error) {
       next(error)
     }
