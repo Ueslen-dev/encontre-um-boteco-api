@@ -3,17 +3,13 @@ import escapeStringRegexp from '@utils/escapeStringRegexp'
 import { uid } from 'uid'
 import Pub from '@models/Pub'
 import PubInterface from '@interfaces/Pub'
+import { isExistingProperty } from '@utils/validator'
 
 import MESSAGES from '@utils/messages'
 const {
   NOT_RESULT,
-  PUB_EXIST,
-  PUB_CODE_EXIST,
-  PUB_IMAGE_EXIST,
   UPLOAD_SUCCESS,
-  UPLOAD_ERROR,
-  NOT_USER_VALIDATE,
-  NOT_PUB_OWNER
+  UPLOAD_ERROR
 } = MESSAGES
 
 const maxLengthUid = 16
@@ -52,6 +48,7 @@ class PubController {
       }: PubInterface = req.body
 
       const code = uid(maxLengthUid)
+
       const insertPub = new Pub(({
         name,
         email,
@@ -67,9 +64,9 @@ class PubController {
         code
       }))
 
-      if (await Pub.findOne({ name })) { return res.status(400).json({ error: PUB_EXIST }) }
-      if (await Pub.findOne({ code })) return res.status(400).json({ error: PUB_CODE_EXIST })
-      if (await Pub.findOne({ photo: filename })) return res.status(400).json({ error: PUB_IMAGE_EXIST })
+      const validator = await isExistingProperty(name, code, filename)
+
+      if (validator) return res.status(400).json({ error: validator })
 
       insertPub.save()
       filename = undefined
@@ -98,6 +95,52 @@ class PubController {
     }
   }
 
+  async update (req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.query as unknown as { id: String}
+      const {
+        name,
+        email,
+        whatsapp,
+        instagram,
+        state,
+        city,
+        cep,
+        address,
+        reference,
+        responsible
+      }: PubInterface = req.body
+
+      const code = uid(maxLengthUid)
+
+      const validator = await isExistingProperty(name, code, filename)
+
+      if (validator) return res.status(400).json({ error: validator })
+
+      const pubUpdate = await Pub.findOneAndUpdate({ _id: id }, {
+        name,
+        email,
+        whatsapp,
+        instagram,
+        state,
+        city,
+        cep,
+        address,
+        reference,
+        photo: filename,
+        responsible,
+        code
+      }, {
+        new: true
+      })
+      filename = undefined
+
+      return res.status(200).json(pubUpdate)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async upload (req: Request, res: Response, next: NextFunction) {
     try {
       if (req.file.filename) {
@@ -106,22 +149,6 @@ class PubController {
       } else {
         return res.status(400).json({ error: UPLOAD_ERROR })
       }
-    } catch (error) {
-      next(error)
-    }
-  }
-
-  async validateUser (req: Request, res: Response, next: NextFunction) {
-    try {
-      const { id, email } = req.query as unknown as { id: String, email: String}
-
-      if (!id || !email) { return res.status(400).json({ error: NOT_USER_VALIDATE }) }
-
-      const findPub = await Pub.findOne({ _id: id, email })
-
-      if (!findPub) { return res.status(400).json({ error: NOT_PUB_OWNER }) }
-
-      return res.status(200).json(findPub)
     } catch (error) {
       next(error)
     }
