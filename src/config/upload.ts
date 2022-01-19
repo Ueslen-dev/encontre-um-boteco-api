@@ -9,7 +9,6 @@ export const Upload = {
       callback(null, path.resolve(__dirname, '..', 'uploads', 'images'))
     },
     filename: (req, file, callback) => {
-      console.log(file)
       const fileName = `${new Date().getTime()}-${cryptoJs.MD5(
         file.originalname
       )}-${file.originalname}`

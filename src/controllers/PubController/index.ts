@@ -160,7 +160,7 @@ class PubController {
     try {
       if (req.file.filename) {
         filename = req.file.filename
-        return res.status(201).json({ success: UPLOAD_SUCCESS })
+        return res.status(200).json({ success: UPLOAD_SUCCESS })
       } else {
         return res.status(400).json({ error: UPLOAD_ERROR })
       }

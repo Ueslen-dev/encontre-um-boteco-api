@@ -12,8 +12,7 @@ const PubSchema = new Schema({
   reference: { type: String, maxlength: 255 },
   photo: { type: String, maxlength: 255, unique: true, required: true },
   responsible: { type: String, maxlength: 20, required: true },
-  code: { type: String, maxlength: 16, required: true, unique: true },
-  is_deleted: Date
+  code: { type: String, maxlength: 16, required: true, unique: true }
 })
 
 const Pub = model('pubs', PubSchema)
