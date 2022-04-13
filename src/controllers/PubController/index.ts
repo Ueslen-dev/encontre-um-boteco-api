@@ -10,7 +10,9 @@ const {
   NOT_RESULT,
   UPLOAD_SUCCESS,
   UPLOAD_ERROR,
-  NOT_DELETE
+  NOT_DELETE,
+  PUB_IMAGE_NOT_EXIST,
+  PUB_CREATED
 } = MESSAGES
 
 const maxLengthUid = 16
@@ -68,11 +70,12 @@ class PubController {
       const validator = await isExistingProperty(name, code, filename)
 
       if (validator) return res.status(400).json({ error: validator })
+      if (!filename) return res.status(400).json({ error: PUB_IMAGE_NOT_EXIST })
 
       insertPub.save()
       filename = undefined
 
-      return res.send({ insertPub })
+      return res.send({ insertPub, success: PUB_CREATED })
     } catch (error) {
       next(error)
     }

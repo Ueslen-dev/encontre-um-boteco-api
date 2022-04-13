@@ -1,8 +1,10 @@
 export const MESSAGES = {
   NOT_RESULT: 'Poxa, infelizmente não temos resultados!',
   PUB_EXIST: 'Eita! Esse boteco já existe',
+  PUB_CREATED: 'Uhuu! Boteco cadastrado com sucesso, obrigado!',
   PUB_CODE_EXIST: 'Poxa, infelizmente já existe um boteco com esse código.',
   PUB_IMAGE_EXIST: 'Eita! Já existe um boteco com o mesmo nome de imagem',
+  PUB_IMAGE_NOT_EXIST: 'Poxa, precisamos de uma foto do boteco!',
   UPLOAD_SUCCESS: 'Uhuu! Upload realizado com sucesso!',
   UPLOAD_ERROR: 'Ops! Ocorreu um erro ao tentar fazer upload',
   EMAIL_ERROR_TO: 'Por favor, insira um destinatário',

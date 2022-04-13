@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose'
 const PubSchema = new Schema({
   name: { type: String, required: true, unique: true, maxlength: 60 },
   email: { type: String, required: true, maxlength: 255 },
-  whatsapp: { type: String, maxlength: 12, unique: true },
+  whatsapp: { type: String, maxlength: 15, unique: true },
   instagram: { type: String, maxlength: 60, unique: true },
   state: { type: Number, required: true },
   city: { type: Number, required: true },

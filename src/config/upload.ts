@@ -18,11 +18,11 @@ export const Upload = {
   limits: {
     fileSize: 2 * 1024 * 1024
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (req, file, callback) => {
     const allowedMimes = ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/gif']
     allowedMimes.includes(file.mimetype)
-      ? cb(null, true)
-      : cb(new Error('Invalid file type.'))
+      ? callback(null, true)
+      : callback(new Error('Invalid file type.'))
   }
 }
 

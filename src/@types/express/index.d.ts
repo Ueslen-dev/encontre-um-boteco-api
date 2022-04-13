@@ -2,7 +2,8 @@
 declare namespace Express {
   export interface Request {
     file: {
-      filename: string
+      filename: string,
+      name: string
     }
   }
 }
