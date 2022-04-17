@@ -21,9 +21,9 @@ class PubController {
   index (req: Request, res: Response, next: NextFunction) {
     try {
       const { state, city } = req.query as unknown as { state: Number, city: Number }
-
+      console.log({ state: Number(state), city: Number(city) }, 'dados')
       state && city
-        ? Pub.find({ state, city }, (err, data: PubInterface[]) => {
+        ? Pub.find({ state: Number(state), city: Number(city) }, (err, data: PubInterface[]) => {
           if (err) {
             throw err
           }
@@ -67,8 +67,16 @@ class PubController {
         code
       }))
 
-      const validator = await isExistingProperty(name, code, filename)
-
+      const validator = await isExistingProperty(
+        name,
+        code,
+        filename,
+        state,
+        city,
+        whatsapp,
+        instagram
+      )
+      console.log(validator, 'validator')
       if (validator) return res.status(400).json({ error: validator })
       if (!filename) return res.status(400).json({ error: PUB_IMAGE_NOT_EXIST })
 
@@ -117,7 +125,15 @@ class PubController {
 
       const code = uid(maxLengthUid)
 
-      const validator = await isExistingProperty(name, code, filename)
+      const validator = await isExistingProperty(
+        name,
+        code,
+        filename,
+        state,
+        city,
+        whatsapp,
+        instagram
+      )
 
       if (validator) return res.status(400).json({ error: validator })
 
