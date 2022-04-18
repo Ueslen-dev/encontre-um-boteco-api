@@ -20,16 +20,37 @@ let filename
 class PubController {
   index (req: Request, res: Response, next: NextFunction) {
     try {
-      const { state, city } = req.query as unknown as { state: Number, city: Number }
-      console.log({ state: Number(state), city: Number(city) }, 'dados')
-      state && city
-        ? Pub.find({ state: Number(state), city: Number(city) }, (err, data: PubInterface[]) => {
-          if (err) {
-            throw err
-          }
-          return res.status(200).json(data)
-        })
-        : res.status(400).json({ error: NOT_RESULT })
+      const { state, city, page, perPage } = req.query as unknown as {
+        state: Number,
+        city: Number,
+        page: Number,
+        perPage: Number,
+      }
+
+      const pageNumber = (Math.abs(Number(page)) || 1) - 1
+
+      if (state && city) {
+        Pub.find({ state: Number(state), city: Number(city) })
+          .sort({ name: 'asc' })
+          .skip(Number(perPage) * pageNumber)
+          .limit(Number(perPage))
+          .exec((err, pubs) => {
+            if (err) {
+              throw err
+            }
+            Pub.countDocuments().exec((err, count) => {
+              if (err) {
+                throw err
+              }
+              return res.status(200).json({
+                pubs,
+                page: pageNumber,
+                total: pubs.length,
+                pages: count / Number(perPage)
+              })
+            })
+          })
+      }
     } catch (error) {
       next(error)
     }
