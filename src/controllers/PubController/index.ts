@@ -20,11 +20,11 @@ let filename
 class PubController {
   index (req: Request, res: Response, next: NextFunction) {
     try {
-      const { state, city, page, perPage } = req.query as unknown as {
+      const { state, city, page, limit } = req.query as unknown as {
         state: Number,
         city: Number,
         page: Number,
-        perPage: Number,
+        limit: Number,
       }
 
       const pageNumber = (Math.abs(Number(page)) || 1) - 1
@@ -32,8 +32,8 @@ class PubController {
       if (state && city) {
         Pub.find({ state: Number(state), city: Number(city) })
           .sort({ name: 'asc' })
-          .skip(Number(perPage) * pageNumber)
-          .limit(Number(perPage))
+          .skip(Number(limit) * pageNumber)
+          .limit(Number(limit))
           .exec((err, pubs) => {
             if (err) {
               throw err
@@ -43,10 +43,10 @@ class PubController {
                 throw err
               }
               return res.status(200).json({
-                pubs,
+                results: pubs,
                 page: pageNumber,
-                total: pubs.length,
-                pages: count / Number(perPage)
+                totalResults: pubs.length,
+                totalPages: count / Number(limit)
               })
             })
           })
