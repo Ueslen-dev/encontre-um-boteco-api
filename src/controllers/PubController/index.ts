@@ -47,8 +47,7 @@ class PubController {
                 results: pubs,
                 page: pageNumber,
                 totalResults: pubs.length,
-                totalPages: count / Number(limit),
-                count
+                totalPages: count / Number(limit)
               })
             })
           })
@@ -99,7 +98,7 @@ class PubController {
         whatsapp,
         instagram
       )
-      console.log(validator, 'validator')
+
       if (validator) return res.status(400).json({ error: validator })
       if (!filename) return res.status(400).json({ error: PUB_IMAGE_NOT_EXIST })
 
