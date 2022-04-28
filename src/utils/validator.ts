@@ -18,7 +18,6 @@ export const isExistingProperty = async (
   whatsapp: String,
   instagram: String
 ) => {
-  console.log(await Pub.findOne({ name, state, city }), 'validando findOne')
   if (await Pub.findOne({ name, state, city })) return PUB_EXIST
   if (await Pub.findOne({ whatsapp })) return PUB_WHATSAPP_EXIST
   if (await Pub.findOne({ instagram })) return PUB_INSTAGRAM_EXIST
