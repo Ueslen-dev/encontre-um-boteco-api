@@ -34,11 +34,12 @@ class PubController {
           .sort({ name: 'asc' })
           .skip(Number(limit) * pageNumber)
           .limit(Number(limit))
+
           .exec((err, pubs) => {
             if (err) {
               throw err
             }
-            Pub.countDocuments().exec((err, count) => {
+            Pub.countDocuments({ state: Number(state), city: Number(city) }).exec((err, count) => {
               if (err) {
                 throw err
               }
@@ -46,7 +47,8 @@ class PubController {
                 results: pubs,
                 page: pageNumber,
                 totalResults: pubs.length,
-                totalPages: count / Number(limit)
+                totalPages: count / Number(limit),
+                count
               })
             })
           })
