@@ -43,11 +43,12 @@ class PubController {
               if (err) {
                 throw err
               }
+
               return res.status(200).json({
                 results: pubs,
                 page: pageNumber,
                 totalResults: pubs.length,
-                totalPages: count / Number(limit)
+                totalPages: Math.ceil(count / Number(limit))
               })
             })
           })
