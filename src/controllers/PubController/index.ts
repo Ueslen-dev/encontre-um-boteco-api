@@ -114,11 +114,19 @@ class PubController {
 
   async search (req: Request, res: Response, next: NextFunction) {
     try {
-      const search: string = req.query.search as string
-      const $regex = escapeStringRegexp(search)
+      const { state, city, search } = req.query as unknown as {
+        state: Number,
+        city: Number,
+        search: String,
+      }
+      const searchRegex = escapeStringRegexp(search)
 
-      $regex
-        ? Pub.find({ name: { $regex } }, (err, data: PubInterface[]) => {
+      searchRegex
+        ? Pub.find({
+          name: { $regex: new RegExp(searchRegex, 'ig') },
+          state: Number(state),
+          city: Number(city)
+        }, (err, data: PubInterface[]) => {
           if (err) {
             throw err
           }

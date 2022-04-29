@@ -1,6 +1,5 @@
-export const escapeStringRegexp = (string: string) =>
+export const escapeStringRegexp = (string: String) =>
   string && string
     .replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-    .replace(/-/g, '\\x2d')
 
 export default escapeStringRegexp
