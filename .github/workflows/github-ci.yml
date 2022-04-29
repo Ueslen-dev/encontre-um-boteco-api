@@ -40,7 +40,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
          heroku_app_name: "encontre-um-boteco-api"
          heroku_email: "ueslen.santana@outlook.com"
         
