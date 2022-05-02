@@ -19,7 +19,7 @@ export const Upload = {
     fileSize: 2 * 1024 * 1024
   },
   fileFilter: (req, file, callback) => {
-    const allowedMimes = ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/gif']
+    const allowedMimes = ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/png']
     allowedMimes.includes(file.mimetype)
       ? callback(null, true)
       : callback(new Error('Invalid file type.'))
