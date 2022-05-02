@@ -43,4 +43,6 @@ jobs:
          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
          heroku_app_name: "encontre-um-boteco-api"
          heroku_email: "ueslen.santana@outlook.com"
+         branch: main
+         dontuseforce: true
         
