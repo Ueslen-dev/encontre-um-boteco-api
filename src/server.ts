@@ -12,7 +12,7 @@ const port = process.env.PORT || 5050
 app.use(cors())
 app.use(express.json())
 app.use(route)
-app.use('/files', express.static(path.resolve(__dirname, 'uploads')))
+app.use('/files', express.static(path.resolve(__dirname, '..', 'public', 'uploads')))
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   res.status(error.status || 500)
