@@ -61,6 +61,9 @@ jobs:
 
         env:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          
+      - name: Git pull
+        run: git pull
 
       - name: Push to Heroku
         run: git push heroku main
