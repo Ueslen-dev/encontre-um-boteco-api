@@ -33,9 +33,6 @@ jobs:
         with:
          mongodb-version: ${{ matrix.mongodb-version }}
          
-      - name: Install dependecies
-        run: yarn --frozen-lockfile
-
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
