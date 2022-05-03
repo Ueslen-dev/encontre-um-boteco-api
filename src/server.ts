@@ -8,6 +8,10 @@ import connectDB from '@config/database'
 const app = express()
 const port = process.env.PORT || 5050
 
+const teste = 'teste'
+
+console.log(teste)
+
 process.env.PWD = process.cwd()
 
 app.use(cors())
