@@ -63,7 +63,7 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           
       - name: Git pull
-        run: git pull heroku main
+        run: git pull heroku main --ff-only
         
         env:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
