@@ -3,10 +3,10 @@ import path from 'path'
 import cryptoJs from 'crypto-js'
 
 export const Upload = {
-  dest: path.resolve(__dirname, '..', '..', 'public', 'uploads', 'images'),
+  dest: path.resolve(__dirname, '..', 'uploads', 'images'),
   storage: multer.diskStorage({
     destination: (req, file, callback) => {
-      callback(null, path.resolve(__dirname, '..', '..', 'public', 'uploads', 'images'))
+      callback(null, path.resolve(__dirname, '..', 'uploads', 'images'))
     },
     filename: (req, file, callback) => {
       const fileName = `${new Date().getTime()}-${cryptoJs.MD5(
