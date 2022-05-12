@@ -21,7 +21,7 @@ route.post('/pub/upload', multer(uploadConfig).single('file'), Pub.upload)
 route.put('/pub', Pub.update)
 route.delete('/pub', Pub.delete)
 
-route.get('/pub/email/send', Email.send)
+route.post('/pub/email/send', Email.send)
 route.get('/pub/user/validate', User.validate)
 route.get('/pub/code/validate', Code.validate)
 

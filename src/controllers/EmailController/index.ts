@@ -38,7 +38,7 @@ class EmailController {
       emailTransporter.use('compile', hbs(handlebarOptions))
 
       const emailBody = {
-        from: process.env.EMAIL_USER,
+        from: 'encontreumboteco@gmail.com',
         to,
         subject,
         template: 'index',
