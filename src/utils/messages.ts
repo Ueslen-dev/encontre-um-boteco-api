@@ -11,10 +11,13 @@ export const MESSAGES = {
   UPLOAD_ERROR: 'Ops! Ocorreu um erro ao tentar fazer upload',
   EMAIL_ERROR_TO: 'Por favor, insira um destinatário',
   EMAIL_ERROR_SUBJECT: 'Por favor, insira um assunto',
+  EMAIL_SUCCESS: 'Uhuu, email enviado com sucesso!',
   NOT_USER_VALIDATE: 'Por favor, informe um usuário e um boteco para validar',
   NOT_PUB_OWNER: 'Poxa, infelizmente o boteco não existe ou você não é o proprietário.',
+  PUB_OWNER_EXIST: 'Código válido, agora podemos prosseguir!',
   NOT_ID_OR_CODE: 'As propriedades "id" e "code" são inválidas ou não existem',
-  NOT_DELETE: 'Poxa, infelizmente não foi possível remover este boteco.'
+  NOT_DELETE: 'Poxa, infelizmente não foi possível remover este boteco.',
+  DELETE_SUCCESS: 'O boteco foi removido com sucesso!'
 }
 
 export default MESSAGES

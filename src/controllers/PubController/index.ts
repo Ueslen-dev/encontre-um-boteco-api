@@ -12,7 +12,8 @@ const {
   UPLOAD_ERROR,
   NOT_DELETE,
   PUB_IMAGE_NOT_EXIST,
-  PUB_CREATED
+  PUB_CREATED,
+  DELETE_SUCCESS
 } = MESSAGES
 
 const maxLengthUid = 16
@@ -200,7 +201,7 @@ class PubController {
 
       const pubDelete = await Pub.findOneAndDelete({ _id: id })
 
-      return res.status(200).json(pubDelete)
+      return res.status(200).json({ pub: pubDelete, success: DELETE_SUCCESS })
     } catch (error) {
       next(error)
     }

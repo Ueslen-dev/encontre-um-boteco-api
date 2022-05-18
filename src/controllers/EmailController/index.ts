@@ -9,7 +9,8 @@ import EmailBodyInterface from '@interfaces/EmailBody'
 
 const {
   EMAIL_ERROR_TO,
-  EMAIL_ERROR_SUBJECT
+  EMAIL_ERROR_SUBJECT,
+  EMAIL_SUCCESS
 } = MESSAGES
 class EmailController {
   async send (req: Request, res: Response, next: NextFunction) {
@@ -49,8 +50,8 @@ class EmailController {
         }
       }
 
-      return emailTransporter.sendMail(emailBody).then(info => {
-        res.send(info)
+      return emailTransporter.sendMail(emailBody).then(infos => {
+        res.status(200).json({ emailInfos: infos, success: EMAIL_SUCCESS })
       }).catch(error => {
         res.send(error)
       })
