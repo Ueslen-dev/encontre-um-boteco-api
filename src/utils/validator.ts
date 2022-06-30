@@ -4,9 +4,7 @@ import MESSAGES from '@utils/messages'
 const {
   PUB_EXIST,
   PUB_CODE_EXIST,
-  PUB_IMAGE_EXIST,
-  PUB_WHATSAPP_EXIST,
-  PUB_INSTAGRAM_EXIST
+  PUB_IMAGE_EXIST
 } = MESSAGES
 
 export const isExistingProperty = async (
@@ -19,8 +17,6 @@ export const isExistingProperty = async (
   instagram: String
 ) => {
   if (await Pub.findOne({ name, state, city })) return PUB_EXIST
-  if (await Pub.findOne({ whatsapp })) return PUB_WHATSAPP_EXIST
-  if (await Pub.findOne({ instagram })) return PUB_INSTAGRAM_EXIST
   if (await Pub.findOne({ code })) return PUB_CODE_EXIST
   if (filename) {
     if (await Pub.findOne({ photo: filename })) return PUB_IMAGE_EXIST

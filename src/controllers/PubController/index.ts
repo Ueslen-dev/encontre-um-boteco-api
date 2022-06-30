@@ -11,7 +11,6 @@ const {
   UPLOAD_SUCCESS,
   UPLOAD_ERROR,
   NOT_DELETE,
-  PUB_IMAGE_NOT_EXIST,
   PUB_CREATED,
   DELETE_SUCCESS
 } = MESSAGES
@@ -102,9 +101,8 @@ class PubController {
       )
 
       if (validator) return res.status(400).json({ error: validator })
-      if (!filename) return res.status(400).json({ error: PUB_IMAGE_NOT_EXIST })
 
-      insertPub.save()
+      await insertPub.save()
       filename = undefined
 
       return res.send({ insertPub, success: PUB_CREATED })
