@@ -1,6 +1,6 @@
 export const MESSAGES = {
   NOT_RESULT: 'Poxa, infelizmente não temos resultados!',
-  PUB_EXIST: 'Eita! Esse boteco já existe',
+  PUB_EXIST: 'Eita! Esse boteco já existe!',
   PUB_CREATED: 'Uhuu! Boteco cadastrado com sucesso, obrigado!',
   PUB_CODE_EXIST: 'Poxa, infelizmente já existe um boteco com esse código.',
   PUB_IMAGE_EXIST: 'Eita! Já existe um boteco com o mesmo nome de imagem',
