@@ -45,7 +45,7 @@ class EmailController {
         template: 'index',
         context: {
           code,
-          owner,
+          owner: owner || 'pessoa',
           pub
         }
       }

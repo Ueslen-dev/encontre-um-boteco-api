@@ -1,77 +1,28 @@
-"<!DOCTYPE html>
+<!DOCTYPE html>
 <html lant="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-sacale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Código de Verificação</title>
-    <style>
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      border: 1px solid #3333;
-      text-align: center;
-      padding: 20px;
-    }
-   .logo img{
-     width: 100%;
-     max-width: 250px;
-   }
-
-   .wrapper {
-     text-align: center;
-   }
-
-   .emailBody h1 {
-     font-size: 2.5rem;
-     color: rgb(0, 0, 0);
-   }
-
-   .emailBody p {
-     font-size: 1.8rem;
-     color: rgba(36, 36, 36, 0.404);
-   }
-
-  .code {
-    background-color: rgb(224, 153, 20);
-    color: rgb(255, 255, 255);
-    padding: 25px;
-    font-size: 2rem;
-    width: 400px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    font-weight: bold;
-  }
-
-  .footer {
-    font-size: 1.6rem;
-    text-align: center;
-    padding: 15px;
-    background-color: #dddd;
-    color: #3333;
-  }
- </style>
  </head>
  
-<body class="container">
-  <header class="header">
-    <figure class="logo">
+<body style="max-width:600px;margin:0 auto;border:1px solid #3333;text-align:center;padding:20px;font-family:sans-serif;">
+  <div>
       <img src="https://user-images.githubusercontent.com/65665108/143971461-d8ddcafa-9f2c-44fb-933d-758973ee5a8b.png" alt="um garfo espetando um linguiça com duas
-      garrafas de cerveja ao lado"/>
-    </figure>
-  </header>
-  <main class="wrapper">
-    <section class="emailBody">
-      <h1>Olá, {{owner}}!</h1>
-      <p>Segue abaixo o código de validação do boteco <strong>{{pub}}</strong></p>
-      <div class="code">
-        {{code}}
+      garrafas de cerveja ao lado" style="max-width:250px;"/>
+  </div>
+  <div style="text-align:center;">
+    <div>
+      <h1 style="font-size:30px;color:rgb(0, 0, 0);">Olá {{owner}}!</h1>
+      <p style="font-size:25px;color:rgba(36, 36, 36, 0.404);">Segue abaixo o código de validação do boteco <strong>{{pub}}</strong></p>
+      <div style="background-color:rgb(224, 153, 20);color:rgb(255, 255, 255);padding:25px;font-size:28px;width:400px;margin:0 auto;margin-bottom:50px;">
+        <strong>{{code}}</strong>
       </div>
-    </section>
-  </main>
-  <footer class="footer">
+    </div>
+  </div>
+  <div style="font-size:16px;text-align:center;padding:15px;background-color:#dddd;color:#3333;">
     Encontre um Boteco
-  </footer>
+  </div>
 </body>
-</html>"
+</html>
