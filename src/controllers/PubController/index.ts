@@ -101,11 +101,13 @@ class PubController {
 
       insertPub.save()
 
+      if (insertPub.photo) {
+        filename = undefined
+      }
+
       return res.send({ insertPub, success: PUB_CREATED })
     } catch (error) {
       next(error)
-    } finally {
-      filename = undefined
     }
   }
 
