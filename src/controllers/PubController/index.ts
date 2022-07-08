@@ -99,12 +99,13 @@ class PubController {
 
       if (validator) return res.status(400).json({ error: validator })
 
-      await insertPub.save()
-      filename = undefined
+      insertPub.save()
 
       return res.send({ insertPub, success: PUB_CREATED })
     } catch (error) {
       next(error)
+    } finally {
+      filename = undefined
     }
   }
 
@@ -203,6 +204,7 @@ class PubController {
     try {
       if (req.file.filename) {
         filename = req.file.filename
+
         return res.status(200).json({ success: UPLOAD_SUCCESS })
       } else {
         return res.status(400).json({ error: UPLOAD_ERROR })
