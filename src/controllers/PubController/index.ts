@@ -93,11 +93,8 @@ class PubController {
       const validator = await isExistingProperty(
         name,
         code,
-        filename,
         state,
-        city,
-        whatsapp,
-        instagram
+        city
       )
 
       if (validator) return res.status(400).json({ error: validator })
@@ -158,11 +155,8 @@ class PubController {
       const validator = await isExistingProperty(
         name,
         code,
-        filename,
         state,
-        city,
-        whatsapp,
-        instagram
+        city
       )
 
       if (validator) return res.status(400).json({ error: validator })
